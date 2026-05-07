@@ -1,6 +1,21 @@
 import { z } from "zod";
 
-export const productSchema = z.object({
+export const ProductListingSchema = z.object({
+  id: z.number(),
+  title: z.string(),
+  segment: z.string(),
+  division: z.string(),
+  company: z.string(),
+  image_url: z.string().nullable(),
+});
+
+export const ProductListingResponseSchema = z.object({
+  items: z.array(ProductListingSchema),
+  current_page: z.number(),
+  hasMore: z.boolean(),
+});
+
+export const ProductDetailSchema = z.object({
   id: z.number(),
   title: z.string(),
   description: z.string(),
@@ -17,16 +32,29 @@ export const productSchema = z.object({
   applications: z.string().nullable(),
 
   status: z.enum(["active", "inactive"]),
-
   created_at: z.string(),
-  image_url: z.string().nullable(),
+
+  media: z.array(
+    z.object({
+      id: z.number(),
+      product_id: z.number(),
+      image: z.string().nullable(),
+      file: z.string().nullable(),
+      video: z.string().nullable(),
+      created_at: z.string(),
+      updated_at: z.string(),
+    }),
+  ),
 });
 
-export const productsResponseSchema = z.object({
-  items: z.array(productSchema),
-  current_page: z.number(),
-  hasMore: z.boolean(),
+export const ProductDetailResponseSchema = z.object({
+  item: ProductDetailSchema,
 });
 
-export type Product = z.infer<typeof productSchema>;
-export type ProductsResponse = z.infer<typeof productsResponseSchema>;
+export type ProductListing = z.infer<typeof ProductListingSchema>;
+export type ProductListingResponse = z.infer<
+  typeof ProductListingResponseSchema
+>;
+
+export type ProductDetail = z.infer<typeof ProductDetailSchema>;
+export type ProductDetailResponse = z.infer<typeof ProductDetailResponseSchema>;

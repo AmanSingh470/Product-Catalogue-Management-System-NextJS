@@ -6,7 +6,7 @@ import { useState } from "react";
 export default function LargeProductCarousel() {
   const [emblaRef, emblaApi] = useEmblaCarousel({
     axis: "y",
-    loop: true,
+    loop: false,
     align: "start",
     slidesToScroll: 1,
     dragFree: false,

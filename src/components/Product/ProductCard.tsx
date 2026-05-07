@@ -2,9 +2,9 @@
 import { useView } from "@/context/view-context";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
-export default function ProductCard({ title, segment, division, image_url }: any) {
+export default function ProductCard({id, title, segment, division, image_url }: any) {
     const { view } = useView();
     const baseURL = process.env.NEXT_PUBLIC_BACKEND_URL;
     const [loaded, setLoaded] = useState(false);
@@ -13,7 +13,7 @@ export default function ProductCard({ title, segment, division, image_url }: any
         <div>
             {(
                 view === "grid" ? (
-                    <Link href="/products" prefetch={false}>
+                    <Link href={`/products/${id}`} prefetch={false}>
                         <div className="group relative rounded-sm flex flex-col overflow-hidden text-white w-full h-45 sm:h-70 md:h-85 lg:h-45 xl:h-55 2xl:h-60 product-item cursor-pointer">
                             {!loaded && (
                                 <div className="absolute inset-0 bg-gray-300 overflow-hidden">
@@ -39,7 +39,7 @@ export default function ProductCard({ title, segment, division, image_url }: any
                     </Link>
 
                 ) : (
-                    <Link href="/products" prefetch={false}>
+                    <Link href={`/products/${id}`} prefetch={false}>
                         <div className="grid grid-cols-8 gap-4 items-center bg-white rounded-lg px-4 py-3 shadow-sm hover:bg-gray-50 transition cursor-pointer">
 
                             <div className="flex items-center col-span-3 gap-2">

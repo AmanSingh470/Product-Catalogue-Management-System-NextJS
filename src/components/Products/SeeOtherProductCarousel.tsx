@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import useEmblaCarousel from "embla-carousel-react";
+import Link from "next/link";
 
 const images = [
   "/assets/images/5_Gearbox_Assembly.png",
@@ -44,15 +45,17 @@ export default function SeeOtherProductCarousel() {
         <div className="flex">
           {images.map((src, index) => (
             <div key={index} className="flex-[0_0_100%] md:flex-[0_0_50%] lg:flex-[0_0_25%] px-2 ">
-              <div className="relative h-50 md:h-80 lg:h-60">
-                <Image
-                  src={src}
-                  alt={`slide-${index}`}
-                  fill
-                  className="object-cover rounded-lg"
-                  unoptimized
-                />
-              </div>
+              <Link href="/products" prefetch={false}>
+                <div className="relative h-50 md:h-80 lg:h-60 cursor-pointer">
+                  <Image
+                    src={src}
+                    alt={`slide-${index}`}
+                    fill
+                    className="object-cover rounded-lg"
+                    unoptimized
+                  />
+                </div>
+              </Link>
             </div>
           ))}
         </div>

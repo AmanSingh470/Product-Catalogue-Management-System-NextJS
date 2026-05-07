@@ -4,7 +4,6 @@ import { useView } from "@/context/view-context";
 import { useProducts } from "@/context/product-context";
 import { useIsProductsEmpty } from "@/hooks/useIsProductsEmpty";
 import { Virtuoso, VirtuosoGrid } from "react-virtuoso";
-import Spinner from "@/components/Layout/Spinner";
 import ProductCardSkeleton from "@/components/Layout/ProductCardSkeleton";
 
 // export default function ProductView() {
