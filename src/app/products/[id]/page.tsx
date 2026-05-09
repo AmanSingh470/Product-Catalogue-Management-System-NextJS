@@ -3,10 +3,10 @@ import {getProductById} from "@/services/product.service"
 
 export default async function Page({ params }: { params: { id: Number } }) {
     const { id } = await params;
-    const product_detail = await getProductById(1);
-    // console.log(product_detail);
+    const productDetail = await getProductById(id);
+    console.log("page.tsx of products", productDetail.item);
 
     return <>
-    <ProductsClient/>
+        <ProductsClient initialDetailProducts={productDetail.item}/>
     </>
 }

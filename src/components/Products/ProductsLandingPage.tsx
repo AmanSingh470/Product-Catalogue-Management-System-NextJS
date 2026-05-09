@@ -1,6 +1,8 @@
-import BackButton from "@/components/Layout/BackButton";
+import { useProductDetail } from "@/context/product-detail-context";
 
-export default function ProductsLandingPage({ title = "SuFilm - TFOm", segment = "Instrument panels", category = "Technology", description = "Pre heated thin TPO foil, in mould grained during overmoulding operation.", contact = "Alain Choquet", email = "Alain.Choquet@motherson.com", functions = "Senior Marketing Manager", company = "SMRC", division = "Modules & Polymer Products", lastModified = "4/17/2026" }: any) {
+export default function ProductsLandingPage() {
+  const {productDetail}: any = useProductDetail();
+  const { title, segment, category, description, company_contact_person, company, division, lastModified }: any = productDetail || {};
   return (
     <div className="mb-22">
 
@@ -16,13 +18,13 @@ export default function ProductsLandingPage({ title = "SuFilm - TFOm", segment =
 
         <div className="col-span-2 md:col-span-1 lg-col-span-1">
           <ul className="text-[var(--grey-600)] text-xs md:text-sm">
-            <li>Contact - {contact}</li>
-            <li>Email - {email}</li>
-            <li>Function - {functions}</li>
+            <li>Contact - {company_contact_person.name}</li>
+            <li>Email - {company_contact_person.email}</li>
+            <li>Function - {company_contact_person.function}</li>
           </ul>
         </div>
 
-        <div className="col-span-2 md:col-span-1 lg-col-span-1">
+        <div className="col-span-2 md:col-span-1 `lg-col-span-1">
           <ul className="text-[var(--grey-600)] text-xs md:text-sm">
             <li>Company - {company}</li>
             <li>Division - {division}</li>

@@ -7,12 +7,9 @@ import { ProfileProvider } from "@/context/profile-context";
 import ProductsLandingPage from "@/components/Products/ProductsLandingPage";
 import Main from "@/components/Products/Main";
 import BackButton from "@/components/Layout/BackButton";
-import { getProductById } from "@/services/product.service";
+import {ProductDetailProvider} from "@/context/product-detail-context";
 
-export default function ProductsClient() {
-    const data = getProductById(1);
-    console.log("Data from client side: ", data);
-    
+export default function ProductsClient({ initialDetailProducts }: any) {  
     return <>
         <NotificationProvider>
             <ProfileProvider>
@@ -23,9 +20,10 @@ export default function ProductsClient() {
         </NotificationProvider>
         <BackButton />
         <div className="ml-5 mr-5 md:ml-10 md:mr-10 mb-10">
-        <ProductsLandingPage />
-        <Main />
+            <ProductDetailProvider initialDetailProducts={initialDetailProducts}>
+                <ProductsLandingPage />
+                <Main />
+            </ProductDetailProvider>
         </div>
-
     </>
 }

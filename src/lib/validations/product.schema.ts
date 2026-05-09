@@ -25,26 +25,24 @@ export const ProductDetailSchema = z.object({
   division: z.string(),
 
   company: z.string(),
-  company_contact_person: z.string(),
+  company_contact_person: z.object({
+    name: z.string(),
+    email: z.string(),
+    function: z.string(),
+  }),
 
-  main_advantages: z.string().nullable(),
-  key_facts: z.string().nullable(),
-  applications: z.string().nullable(),
+  main_advantages: z.record(z.string(), z.string()),
 
-  status: z.enum(["active", "inactive"]),
+  key_facts: z.array(z.string()),
+
+  intellectual_properties: z.array(z.string()),
+
+  applications: z.array(z.string()),
+
+  status: z.enum(["1", "2", "3", "4"]),
   created_at: z.string(),
 
-  media: z.array(
-    z.object({
-      id: z.number(),
-      product_id: z.number(),
-      image: z.string().nullable(),
-      file: z.string().nullable(),
-      video: z.string().nullable(),
-      created_at: z.string(),
-      updated_at: z.string(),
-    }),
-  ),
+  image: z.string().nullable(),
 });
 
 export const ProductDetailResponseSchema = z.object({

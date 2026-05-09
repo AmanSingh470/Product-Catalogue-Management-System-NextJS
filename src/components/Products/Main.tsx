@@ -1,15 +1,17 @@
 
 "use client";
-import { useState } from "react";
-import Image from "next/image";
 import MainProductCarousel from "@/components/Products/MainProductCarousel";
 import SeeOtherProductCarousel from "@/components/Products/SeeOtherProductCarousel";
+import { useProductDetail } from "@/context/product-detail-context";
 
 export default function Main() {
+    const { productDetail } = useProductDetail();
+    const { main_advantages, key_facts, intellectual_properties, applications, status }: any = productDetail || {};
+    const activeStatus = parseInt(status);
     return (
         <div>
             <div className="mb-20 md:mb-30">
-                <MainProductCarousel/>
+                <MainProductCarousel />
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-4 gap-14">
@@ -17,50 +19,42 @@ export default function Main() {
                 <div className="grid-span-1">
                     <h2 className="text-xl mb-4">Main Advantages</h2>
                     <div className="grid gap-4">
-                        <div>
-                            <h3 className="text-md text-[var(--grey-800)]">Enhanced experience</h3>
-                            <p className="text-[var(--grey-600)] text-sm">Distinctive surface finishing achieved through thee printed pattern.</p>
-                        </div>
-                        <div>
-                            <h3>Sustainability</h3>
-                            <p className="text-[var(--grey-600)] text-sm">Less CO2 than painting syste, reducing dramatically carbon footprint.</p>
-                        </div>
-                        <div>
-                            <h3>Sustainability</h3>
-                            <p className="text-[var(--grey-600)] text-sm">One single material based system</p>
-                        </div>
-                        <div>
-                            <h3>Cost reduction</h3>
-                            <p className="text-[var(--grey-600)] text-sm">Most cost effective than insert moduling</p>
-                        </div>
-                        <div>
-                            <h3>Modularity</h3>
-                            <p className="text-[var(--grey-600)] text-sm">Suitable for any plant in the world</p>
-                        </div>
+                        {Object.keys(main_advantages).map((title) => (
+                            <div>
+                                <h3 className="text-sm text-[var(--grey-800)]">
+                                    {title}
+                                </h3>
+
+                                <p className="text-[var(--grey-600)] text-sm">
+                                    {main_advantages[title]}
+                                </p>
+                            </div>
+                        ))}
                     </div>
                 </div>
                 <div className="grid-span-1">
                     <h2 className="mb-4 text-xl">Key facts</h2>
                     <ul className="grid gap-4">
-                        <li className="text-sm text-[var(--grey-600)]">Avoiding expensive paint shop investment</li>
-                        <li className="text-sm text-[var(--grey-600)]">Robust global technology production in Motherson for a decade for Renault Zoe and Nissan Magnite</li>
+                        {key_facts.map((description: string) => (
+                            <li className="text-[var(--grey-600)] text-sm">{description}</li>
+                        ))}
                     </ul>
                 </div>
                 <div className="grid-span-1">
                     <h2 className="mb-4 text-xl">Intellectual Property</h2>
-                    <div className="grid gap-4">
-                        <ul className="text-[var(--grey-600)] text-sm">
-                            <li>2 patents</li>
+                        <ul className="text-[var(--grey-600)] text-sm grid gap-4">
+                            {intellectual_properties.map((description: string) => (
+                                <li>{description}</li>
+                            ))}
                         </ul>
-                    </div>
                 </div>
                 <div className="grid-span-1">
                     <h2 className="mb-4 text-xl">Applications / Compliance</h2>
-                    <div className="grid grid-rows-5">
-                        <ul className="text-[var(--grey-600)] text-sm">
-                            <li>Small to large decorative parts</li>
+                        <ul className="text-[var(--grey-600)] text-sm grid gap-4">
+                            {applications.map((description: string) => (
+                                <li>{description}</li>
+                            ))}
                         </ul>
-                    </div>
                 </div>
 
             </div>
@@ -73,7 +67,7 @@ export default function Main() {
                         <div className="absolute top-6 left-0 w-full h-[1px] bg-black"></div>
 
                         <div className="flex flex-col items-start text-center w-40">
-                            <div className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-full bg-[var(--grey-500)] z-10">
+                            <div className={`w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-full z-10 ${activeStatus === 1 ? "bg-black" : "bg-gray-400"}`}>
                                 <span className="text-white">1</span>
                             </div>
                             <p className="mt-2 text-xs md:text-sm text-[var(--grey-600)] text-left m-1">
@@ -82,7 +76,7 @@ export default function Main() {
                         </div>
 
                         <div className="flex flex-col items-center text-center w-40">
-                            <div className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-full bg-[var(--grey-500)] z-10">
+                            <div className={`w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-full z-10 ${activeStatus === 2 ? "bg-black" : "bg-gray-400"}`}>
                                 <span className="text-white">2</span>
                             </div>
                             <p className="mt-2 text-xs md:text-sm text-[var(--grey-600)] m-1">
@@ -91,7 +85,7 @@ export default function Main() {
                         </div>
 
                         <div className="flex flex-col items-center text-center w-40">
-                            <div className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-full bg-[var(--grey-500)] z-10">
+                            <div className={`w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-full z-10 ${activeStatus === 3 ? "bg-black" : "bg-gray-400"}`}>
                                 <span className="text-white">3</span>
                             </div>
                             <p className="mt-2 text-xs md:text-sm text-[var(--grey-600)] m-1">
@@ -100,7 +94,7 @@ export default function Main() {
                         </div>
 
                         <div className="flex flex-col items-end text-center w-40">
-                            <div className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-full bg-black z-10">
+                            <div className={`w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-full z-10 ${activeStatus === 4 ? "bg-black" : "bg-gray-400"}`}>
                                 <span className="text-white">4</span>
                             </div>
                             <p className="mt-2 text-xs text-[var(--grey-600)] m-1">

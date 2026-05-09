@@ -55,20 +55,25 @@ export const getProducts = async ({ page = 1, filters = {} }: Params = {}) => {
 const FALLBACK_DETAIL: ProductDetailResponse = {
   item: {
     id: 0,
-    title: "abc",
+    title: "",
     description: "",
     category: "",
     segment: "",
     division: "",
     company: "",
-    company_contact_person: "",
-    main_advantages: null,
-    key_facts: null,
-    applications: null,
-    status: "inactive",
+    company_contact_person: {
+      name: "",
+      email: "",
+      function: ""
+    },
+    main_advantages: {},
+    key_facts: [],
+    intellectual_properties: [],
+    applications: [],
+    status: "1",
     created_at: "",
-    media: [],
-  },
+    image: null
+  }
 };
 
 export const getProductById = async (id: Number) => {
@@ -84,11 +89,8 @@ export const getProductById = async (id: Number) => {
       return FALLBACK_DETAIL;
     }
     console.log("Coming from Service: ", res.data);
-
     return ProductDetailResponseSchema.parse(res.data);
   } catch (err) {
-    console.log("going in catch of zod");
-    
     return FALLBACK_DETAIL;
   }
 };
