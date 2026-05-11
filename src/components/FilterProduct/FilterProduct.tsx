@@ -8,33 +8,10 @@ export default function FilterProduct() {
     
     const { activeFilter } = useFilter();
     
-    const { allProducts, setAllProducts } = useFilter();
-    const { divisionProducts, setDivisionProducts } = useFilter();
-    const { segmentProducts, setSegmentProducts } = useFilter();
-    const { companyProducts, setCompanyProducts } = useFilter();
-
-    useEffect(() => {
-        switch (activeFilter) {
-            case "all":
-                setAllProducts(allProducts);
-                break;
-
-            case "division":
-                setDivisionProducts(divisionProducts);
-                break;
-
-            case "segment":
-                setSegmentProducts(segmentProducts);
-                break;
-
-            case "company":
-                setCompanyProducts(companyProducts);
-                break;
-
-            default:
-                break;
-        }
-    }, [activeFilter]);
+    const { allProducts  } = useFilter();
+    const { divisionProducts } = useFilter();
+    const { segmentProducts } = useFilter();
+    const { companyProducts } = useFilter();
 
     switch (activeFilter) {
         case "all":
