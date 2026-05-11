@@ -6,7 +6,7 @@ export const ProductListingSchema = z.object({
   segment: z.string(),
   division: z.string(),
   company: z.string(),
-  image_url: z.string().nullable(),
+  thumbnail: z.string().nullable(),
 });
 
 export const ProductListingResponseSchema = z.object({
@@ -22,6 +22,7 @@ export const ProductDetailSchema = z.object({
 
   category: z.string(),
   segment: z.string(),
+  segment_id: z.number(),
   division: z.string(),
 
   company: z.string(),
@@ -40,9 +41,13 @@ export const ProductDetailSchema = z.object({
   applications: z.array(z.string()),
 
   status: z.enum(["1", "2", "3", "4"]),
-  created_at: z.string(),
-
-  image: z.string().nullable(),
+    
+  media: z.object({
+    image: z.array(z.string()),
+    video: z.array(z.string()),
+    file: z.array(z.string())
+  }),
+  updated_at: z.string(),
 });
 
 export const ProductDetailResponseSchema = z.object({

@@ -8,6 +8,7 @@ export default function Main() {
     const { productDetail } = useProductDetail();
     const { main_advantages, key_facts, intellectual_properties, applications, status }: any = productDetail || {};
     const activeStatus = parseInt(status);
+    
     return (
         <div>
             <div className="mb-20 md:mb-30">
@@ -16,11 +17,11 @@ export default function Main() {
 
             <div className="grid grid-cols-1 md:grid-cols-4 gap-14">
 
-                <div className="grid-span-1">
+                <div className="col-span-1">
                     <h2 className="text-xl mb-4">Main Advantages</h2>
                     <div className="grid gap-4">
-                        {Object.keys(main_advantages).map((title) => (
-                            <div>
+                        {Object.keys(main_advantages).map((title, index) => (
+                            <div key={index}>
                                 <h3 className="text-sm text-[var(--grey-800)]">
                                     {title}
                                 </h3>
@@ -32,27 +33,29 @@ export default function Main() {
                         ))}
                     </div>
                 </div>
-                <div className="grid-span-1">
+                <div className="col-span-1">
                     <h2 className="mb-4 text-xl">Key facts</h2>
                     <ul className="grid gap-4">
-                        {key_facts.map((description: string) => (
-                            <li className="text-[var(--grey-600)] text-sm">{description}</li>
+                        {key_facts.map((description: string, index: number) => (
+                            <li className="text-[var(--grey-600)] text-sm" key={index}>
+                                {description}
+                            </li>
                         ))}
                     </ul>
                 </div>
-                <div className="grid-span-1">
+                <div className="col-span-1">
                     <h2 className="mb-4 text-xl">Intellectual Property</h2>
                         <ul className="text-[var(--grey-600)] text-sm grid gap-4">
-                            {intellectual_properties.map((description: string) => (
-                                <li>{description}</li>
+                            {intellectual_properties.map((description: string, index: number) => (
+                                <li key={index}>{description}</li>
                             ))}
                         </ul>
                 </div>
-                <div className="grid-span-1">
+                <div className="col-span-1">
                     <h2 className="mb-4 text-xl">Applications / Compliance</h2>
                         <ul className="text-[var(--grey-600)] text-sm grid gap-4">
-                            {applications.map((description: string) => (
-                                <li>{description}</li>
+                            {applications.map((description: string, index: number) => (
+                                <li key={index}>{description}</li>
                             ))}
                         </ul>
                 </div>

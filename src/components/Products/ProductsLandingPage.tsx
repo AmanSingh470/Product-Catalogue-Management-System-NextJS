@@ -2,7 +2,8 @@ import { useProductDetail } from "@/context/product-detail-context";
 
 export default function ProductsLandingPage() {
   const {productDetail}: any = useProductDetail();
-  const { title, segment, category, description, company_contact_person, company, division, lastModified }: any = productDetail || {};
+  const { title, segment, category, description, company_contact_person, company, division, updated_at }: any = productDetail || {};
+  
   return (
     <div className="mb-22">
 
@@ -28,11 +29,11 @@ export default function ProductsLandingPage() {
           <ul className="text-[var(--grey-600)] text-xs md:text-sm">
             <li>Company - {company}</li>
             <li>Division - {division}</li>
-            <li>Last Modified - {lastModified}</li>
-            <li className="mt-2">
-              <button className="cursor-pointer underline text-red-600">
+            <li>Last Modified - {updated_at}</li>
+            <li className="mt-2 text-red-600">
+              <a className="cursor-pointer underline" href={`${process.env.NEXT_PUBLIC_BACKEND_URL}/storage/files/products/file1.pdf`} download target="_blank">
                 Download Factsheet
-              </button>
+              </a>
             </li>
           </ul>
         </div>

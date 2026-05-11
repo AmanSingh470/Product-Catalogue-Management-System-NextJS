@@ -5,5 +5,7 @@ export interface Product {
   segment: string;
   division: string;
 
-  image_url: string | null;
+  company: string;
+
+  thumbnail: string | null;
 }

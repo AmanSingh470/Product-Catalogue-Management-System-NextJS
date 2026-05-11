@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
-export default function ProductCard({id, title, segment, division, image_url }: any) {
+export default function ProductCard({id, title, segment, division, thumbnail }: any) {
     const { view } = useView();
     const baseURL = process.env.NEXT_PUBLIC_BACKEND_URL;
     const [loaded, setLoaded] = useState(false);
@@ -21,7 +21,7 @@ export default function ProductCard({id, title, segment, division, image_url }: 
                                 </div>
                             )}
                             <Image
-                                src={`${baseURL}/storage/images/products/${image_url}`}
+                                src={`${baseURL}/storage/images/products/${thumbnail}`}
                                 alt={title}
                                 fill
                                 className="rounded object-cover"
@@ -44,7 +44,7 @@ export default function ProductCard({id, title, segment, division, image_url }: 
 
                             <div className="flex items-center col-span-3 gap-2">
                                 <Image
-                                    src={`${baseURL}/storage/images/products/${image_url}`}
+                                    src={`${baseURL}/storage/images/products/${thumbnail}`}
                                     alt={title}
                                     className="w-10 h-10 rounded object-cover"
                                     width={40}

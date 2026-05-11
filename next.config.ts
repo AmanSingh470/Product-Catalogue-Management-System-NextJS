@@ -10,7 +10,7 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "product-catalogue-management-system.onrender.com",
+        hostname: new URL(process.env.NEXT_PUBLIC_BACKEND_URL!).hostname ,      
         pathname: "/storage/**",
       },
     ],

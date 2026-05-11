@@ -1,11 +1,7 @@
-export interface ProductMedia {
-  id: number;
-  product_id: number;
-  file: string | null;
-  image: string | null;
-  video: string | null;
-  created_at: string;
-  updated_at: string;
+export interface ProductMediaGrouped {
+  image: string[];
+  video: string[];
+  file: string[];
 }
 
 export interface ProductDetail {
@@ -14,6 +10,7 @@ export interface ProductDetail {
   description: string;
   category: string;
   segment: string;
+  segment_id: number;
   division: string;
   company: string;
   company_contact_person: string;
@@ -22,5 +19,5 @@ export interface ProductDetail {
   applications: string | null;
   status: string;
   created_at: string;
-  media: ProductMedia[];
+  media: ProductMediaGrouped[];
 }

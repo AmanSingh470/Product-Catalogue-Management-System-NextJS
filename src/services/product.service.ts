@@ -59,6 +59,7 @@ const FALLBACK_DETAIL: ProductDetailResponse = {
     description: "",
     category: "",
     segment: "",
+    segment_id: 0,
     division: "",
     company: "",
     company_contact_person: {
@@ -71,8 +72,12 @@ const FALLBACK_DETAIL: ProductDetailResponse = {
     intellectual_properties: [],
     applications: [],
     status: "1",
-    created_at: "",
-    image: null
+    media:{
+      image: [],
+      video: [],
+      file: []
+    },
+    updated_at: "",
   }
 };
 
