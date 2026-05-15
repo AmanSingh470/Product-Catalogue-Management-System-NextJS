@@ -1,8 +1,8 @@
 import { useProductDetail } from "@/context/product-detail-context";
 
 export default function ProductsLandingPage() {
-  const {productDetail}: any = useProductDetail();
-  const { title, segment, category, description, company_contact_person, company, division, updated_at }: any = productDetail || {};
+  const {productDetail} = useProductDetail();
+  const { title, segment, category, description, company_contact_person, company, division, updated_at } = productDetail || {};
   
   return (
     <div className="mb-22">
@@ -19,9 +19,9 @@ export default function ProductsLandingPage() {
 
         <div className="col-span-2 md:col-span-1 lg-col-span-1">
           <ul className="text-[var(--grey-600)] text-xs md:text-sm">
-            <li>Contact - {company_contact_person.name}</li>
-            <li>Email - {company_contact_person.email}</li>
-            <li>Function - {company_contact_person.function}</li>
+            <li>Contact - {company_contact_person?.name}</li>
+            <li>Email - {company_contact_person?.email}</li>
+            <li>Function - {company_contact_person?.function}</li>
           </ul>
         </div>
 

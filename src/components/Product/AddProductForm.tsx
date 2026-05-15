@@ -10,18 +10,27 @@ import api from "@/lib/axios";
 import { productRequestSchema } from "@/lib/validations/productRequestSchema";
 import Spinner from "@/components/Layout/Spinner";
 
+interface AddProductFormData {
+  title: string;
+  category_id: string;
+  company_id: string;
+  division_id: string;
+  segment_id: string;
+  description?: string;
+}
+
 export default function AddProductForm() {
   const [text, setText] = useState("");
   const { divisionProducts, segmentProducts, companyProducts, categoryProducts } = useFilter();
-  const { closeModal } = useAddProduct();
-
-  const { register,
+  const { closeModal } = useAddProduct();  
+  const {
+    register,
     handleSubmit,
     reset,
     watch,
     setValue,
     formState: { errors }
-  } = useForm({ resolver: zodResolver(productRequestSchema) });
+  } = useForm<AddProductFormData>({ resolver: zodResolver(productRequestSchema) });
 
   useEffect(() => {
     register("description");
@@ -29,7 +38,7 @@ export default function AddProductForm() {
 
   const [loading, setLoading] = useState(false);
 
-  const onSubmit = async (data: any) => {
+  const onSubmit = async (data: AddProductFormData) => {
     try {
       setLoading(true);
       const res = await api.post("/product-request-form", data);
@@ -59,8 +68,7 @@ export default function AddProductForm() {
       reset();
       closeModal();
     }
-    catch (e: any) {
-      console.log(e);
+    catch (e) {
     }
   };
 
@@ -70,7 +78,7 @@ export default function AddProductForm() {
       className="relative space-y-5"
       onSubmit={handleSubmit(onSubmit)}
     >
-    {loading && <Spinner />}
+      {loading && <Spinner />}
       <div>
         <label className="text-sm font-medium text-black">
           Title<span className="text-red-500">*</span>
@@ -195,12 +203,12 @@ export default function AddProductForm() {
 
       <div>
         <label className="text-sm font-medium text-black">Description</label>
-          {errors.description && (
-            <p className="text-red-500 text-xs">{errors.description.message}</p>
-          )}
+        {errors.description && (
+          <p className="text-red-500 text-xs">{errors.description.message}</p>
+        )}
         <TipTapEditor
           value={watch("description") || ""}
-          onChange={(content: any) => setValue("description", content)}
+          onChange={(content: string) => setValue("description", content)}
         />
       </div>
 

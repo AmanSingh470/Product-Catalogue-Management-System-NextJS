@@ -8,7 +8,7 @@ type ViewContextType = {
 
 const ViewContext = createContext<ViewContextType | null>(null);
 
-export function ViewProvider({ children }: any) {
+export function ViewProvider({ children }: {children: React.ReactNode}) {
   const [view, setView] = useState("grid");
 
   return (

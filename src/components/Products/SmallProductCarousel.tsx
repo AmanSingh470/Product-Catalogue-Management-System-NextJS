@@ -4,7 +4,6 @@ import Image from "next/image";
 import useEmblaCarousel from "embla-carousel-react";
 import { useState } from "react";
 import { useProductDetail } from "@/context/product-detail-context";
-import PlayButton from "@/components/Layout/PlayButton";
 
 export default function SmallProductCarousel() {
   const [emblaRef, emblaApi] = useEmblaCarousel({
@@ -13,10 +12,11 @@ export default function SmallProductCarousel() {
     slidesToScroll: 1,
   });
 
-  const { productDetail }: any = useProductDetail();
-  const { media }: any = productDetail || {};
+  const { productDetail } = useProductDetail();
+  const  media  = productDetail?.media;
 
-  const { image = [], video = [] }: any = media || {};
+  const image: string[] = media?.image || [];
+  const video: string[] = media?.video || [];
 
   const baseURL = process.env.NEXT_PUBLIC_BACKEND_URL;
 
@@ -53,7 +53,7 @@ export default function SmallProductCarousel() {
 
       <div className="overflow-hidden rounded-lg" ref={emblaRef}>
         <div className="flex">
-          {allMedia.map((item: any, index: number) => (
+          {allMedia.map((item: { type: string; url: string }, index: number) => (
             <div
               key={index}
               className="min-w-full relative h-64 md:h-80 cursor-pointer"
@@ -84,7 +84,6 @@ export default function SmallProductCarousel() {
                       ? "border-black"
                       : "border-transparent"
                   }`}
-                  unoptimized
                 />
               )}
             </div>

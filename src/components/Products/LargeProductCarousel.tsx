@@ -15,10 +15,11 @@ export default function LargeProductCarousel() {
     dragFree: false,
   });
 
-  const { productDetail }: any = useProductDetail();
-  const { media }: any = productDetail;
+  const { productDetail } = useProductDetail();
+  const  media  = productDetail?.media;
 
-  const { image = [], video = [] }: any = media || {};
+  const image: string[] = media?.image || [];
+  const video: string[] = media?.video || [];
 
   const baseURL = process.env.NEXT_PUBLIC_BACKEND_URL;
 
@@ -54,7 +55,6 @@ export default function LargeProductCarousel() {
             alt="product"
             fill
             className="rounded object-cover"
-            unoptimized
           />
         )}
       </div>
@@ -76,7 +76,7 @@ export default function LargeProductCarousel() {
 
         <div className="overflow-hidden h-full" ref={emblaRef}>
           <div className="flex flex-col h-full">
-            {allMedia.map((item: any, i: number) => (
+            {allMedia.map((item: { type: string; url: string }, i: number) => (
               <div
                 key={i}
                 className="flex-[0_0_33.33%] p-2"
@@ -101,7 +101,6 @@ export default function LargeProductCarousel() {
                       alt={`product ${i}`}
                       fill
                       className="object-cover rounded"
-                      unoptimized
                     />
                   )}
                 </div>

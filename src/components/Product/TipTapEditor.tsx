@@ -102,7 +102,7 @@ export default function TipTapEditor({ value, onChange }: Props): JSX.Element {
               }`}
           >
             <List
-              className="size-5"
+              size="size-5"
               color={isActiveBulletList ? "white" : "black"}
             />
           </div>
@@ -123,7 +123,7 @@ export default function TipTapEditor({ value, onChange }: Props): JSX.Element {
               type="button"
               className={`cursor-pointer`}
             >
-              <LeftAlign className="size-5" color={`${isActiveLeftAlign ? "white" : "black"}`} />
+              <LeftAlign size="size-5" color={`${isActiveLeftAlign ? "white" : "black"}`} />
             </button>
           </div>
           <div
@@ -132,7 +132,7 @@ export default function TipTapEditor({ value, onChange }: Props): JSX.Element {
               setIsActiveCenterAlign(!isActiveCenterAlign);
             }}
             className={`size-5 text-center cursor-pointer ${isActiveCenterAlign ? "bg-black text-white" : "bg-white text-black"}`}>
-            <CenterAlign className="size-5" color={`${isActiveCenterAlign ? "white" : "black"}`} />
+            <CenterAlign size="size-5" color={`${isActiveCenterAlign ? "white" : "black"}`} />
           </div>
           <div
             onClick={() => {
@@ -140,7 +140,7 @@ export default function TipTapEditor({ value, onChange }: Props): JSX.Element {
               setIsActiveRightAlign(!isActiveRightAlign);
             }}
             className={`size-5 text-center cursor-pointer ${isActiveRightAlign ? "bg-black text-white" : "bg-white text-black"}`} >
-            <RightAlign className="size-5" color={`${isActiveRightAlign ? "white" : "black"}`} />
+            <RightAlign size="size-5" color={`${isActiveRightAlign ? "white" : "black"}`} />
           </div>
         </div>
 

@@ -1,7 +1,7 @@
 "use client";
 import React, { createContext, useContext, useState } from "react";
-
 export type FilterType = "all" | "division" | "company" | "segment";
+import type { FilterItem, Filters } from "@/types/filter/productFilter";
 
 type FilterContextType = {
   activeFilter: FilterType;
@@ -9,32 +9,32 @@ type FilterContextType = {
   isModalOpen: boolean;
   openModal: () => void;
   closeModal: () => void;
-  allProducts: any[];
-  divisionProducts: any[];
-  segmentProducts: any[];
-  companyProducts: any[];
-  categoryProducts: any[],
-  setDivisionProducts: React.Dispatch<React.SetStateAction<any[]>>;
-  setSegmentProducts: React.Dispatch<React.SetStateAction<any[]>>;
-  setCompanyProducts: React.Dispatch<React.SetStateAction<any[]>>;
-  setAllProducts: React.Dispatch<React.SetStateAction<any[]>>;
-  setCategoryProducts: React.Dispatch<React.SetStateAction<any[]>>;
+  allProducts: FilterItem[];
+  divisionProducts: FilterItem[];
+  segmentProducts: FilterItem[];
+  companyProducts: FilterItem[];
+  categoryProducts: FilterItem[],
+  setDivisionProducts: React.Dispatch<React.SetStateAction<FilterItem []>>;
+  setSegmentProducts: React.Dispatch<React.SetStateAction<FilterItem[]>>;
+  setCompanyProducts: React.Dispatch<React.SetStateAction<FilterItem[]>>;
+  setAllProducts: React.Dispatch<React.SetStateAction<FilterItem[]>>;
+  setCategoryProducts: React.Dispatch<React.SetStateAction<FilterItem[]>>;
 };
 
 const FilterContext = createContext<FilterContextType | null>(null);
 
-export function FilterProvider({ children, initialFilters }: { children: React.ReactNode; initialFilters: any }) {
+export function FilterProvider({ children, initialFilters }: { children: React.ReactNode; initialFilters: Filters }) {
     const [activeFilter, setActiveFilter] = useState<FilterType>("all");
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const openModal = () => setIsModalOpen(true);
     const closeModal = () => setIsModalOpen(false);
 
-    const [allProducts, setAllProducts] = useState<any[]>(initialFilters.all);
-    const [divisionProducts, setDivisionProducts] = useState<any[]>(initialFilters.divisions);
-    const [segmentProducts, setSegmentProducts] = useState<any[]>(initialFilters.segments);
-    const [companyProducts, setCompanyProducts] = useState<any[]>(initialFilters.companies);
-    const [categoryProducts, setCategoryProducts] = useState<any[]>(initialFilters.categories);
+    const [allProducts, setAllProducts] = useState<FilterItem[]>(initialFilters.all);
+    const [divisionProducts, setDivisionProducts] = useState<FilterItem[]>(initialFilters.divisions);
+    const [segmentProducts, setSegmentProducts] = useState<FilterItem[]>(initialFilters.segments);
+    const [companyProducts, setCompanyProducts] = useState<FilterItem[]>(initialFilters.companies);
+    const [categoryProducts, setCategoryProducts] = useState<FilterItem[]>(initialFilters.categories);
 
   return (
     <FilterContext.Provider 

@@ -6,9 +6,8 @@ import { useProducts } from "@/context/product-context";
 interface Props {
     id: number;
     name: string;
-    count: number;
-    description: string;
-    image: string;
+    description?: string;
+    image?: string;
     total_products: number
 }
 export default function AllCards({ id, name, description, image, total_products }: Props) {
@@ -39,7 +38,6 @@ export default function AllCards({ id, name, description, image, total_products 
                     alt="cards"
                     className="rounded-md w-full h-full object-cover absolute inset-0 p-2"
                     fill
-                    unoptimized
                     onLoad={() => setLoaded(true)}
                 />
             </div>

@@ -4,9 +4,7 @@ import { useProducts } from "@/context/product-context";
 interface Props {
   id: number,
   name: string;
-  count: any;
   type: "company" | "segment" | "division";
-  productCount?: any;
   total_products: number;
 }
 
@@ -56,7 +54,9 @@ export default function Category({ id, name, type, total_products }: Props) {
           />
           <span className="ml-2 peer-checked:text-black">{name}</span>
         </label>
-        <div>{total_products}</div>
+        <div className={selected.includes(id) ? "text-black" : ""}>
+          {total_products}
+        </div>
       </div>
     </div>
   );

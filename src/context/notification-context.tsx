@@ -8,7 +8,7 @@ type NotificationContextType = {
 
 const NotificationContext = createContext<NotificationContextType | null>(null);
 
-export function NotificationProvider({ children }: any) {
+export function NotificationProvider({ children }: { children: React.ReactNode }) {
   const [open, setOpen] = useState(false);
 
   return (

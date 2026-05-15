@@ -3,8 +3,9 @@ import { useView } from "@/context/view-context";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import type {ProductListing} from "@/types/product/productListing";
 
-export default function ProductCard({id, title, segment, division, thumbnail }: any) {
+export default function ProductCard({id, title, segment, division, thumbnail }: ProductListing) {
     const { view } = useView();
     const baseURL = process.env.NEXT_PUBLIC_BACKEND_URL;
     const [loaded, setLoaded] = useState(false);

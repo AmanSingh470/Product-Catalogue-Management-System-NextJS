@@ -1,11 +1,15 @@
 "use client";
 import { createContext, useContext, useEffect, useState } from "react";
-import { Product } from "@/types/product";
+import { ProductListing } from "@/types/product/productListing";
 import { getProducts } from "@/services/product.service";
 import { useIsLargeScreen } from "@/hooks/useIsLargeScreen";
 
+type SkeletonItem = {
+  __skeleton: true;
+};
+
 interface ProductContextType {
-  products: Product[];
+  products: ProductListing[];
   searchQuery: string;
   setSearchQuery: (q: string) => void;
   selectedCompanies: number[];
@@ -19,13 +23,13 @@ interface ProductContextType {
   hasMore: boolean;
   loading: boolean;
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
-  dataWithSkeletons: any[];
+  dataWithSkeletons: (ProductListing | SkeletonItem)[];
 }
 
 const ProductContext = createContext<ProductContextType | null>(null);
 
-export function ProductProvider({ children, initialProducts }: { children: React.ReactNode; initialProducts: Product[] }) {
-  const [products, setProducts] = useState<Product[]>(initialProducts);
+export function ProductProvider({ children, initialProducts }: { children: React.ReactNode; initialProducts: ProductListing[] }) {
+  const [products, setProducts] = useState<ProductListing[]>(initialProducts);
 
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [selectedCompanies, setSelectedCompanies] = useState<number[]>([]);
@@ -41,7 +45,7 @@ export function ProductProvider({ children, initialProducts }: { children: React
   const dataWithSkeletons = loading
     ? [
       ...products,
-      ...Array.from({ length: skeletonCount }, () => ({ __skeleton: true })),
+      ...Array.from({ length: skeletonCount }, ():SkeletonItem => ({ __skeleton: true })),
     ]
     : products;
 
@@ -96,7 +100,6 @@ export function ProductProvider({ children, initialProducts }: { children: React
       });
 
       const data = res;
-      console.log(data.items.length);
 
       if (data.hasMore === false) {
         setHasMore(false);
@@ -105,7 +108,7 @@ export function ProductProvider({ children, initialProducts }: { children: React
       // setPage(res.current_page);
       setPage((prev) => prev + 1);
     } catch (err) {
-      console.error("Error fetching products:", err);
+
     }
     finally {
       setLoading(false);

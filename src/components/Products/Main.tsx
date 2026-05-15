@@ -3,12 +3,13 @@
 import MainProductCarousel from "@/components/Products/MainProductCarousel";
 import SeeOtherProductCarousel from "@/components/Products/SeeOtherProductCarousel";
 import { useProductDetail } from "@/context/product-detail-context";
+import type { ProductDetail } from "@/types/product/productDetail";
 
 export default function Main() {
     const { productDetail } = useProductDetail();
-    const { main_advantages, key_facts, intellectual_properties, applications, status }: any = productDetail || {};
+    const { main_advantages, key_facts, intellectual_properties, applications, status }: ProductDetail = productDetail as ProductDetail;
     const activeStatus = parseInt(status);
-    
+        
     return (
         <div>
             <div className="mb-20 md:mb-30">

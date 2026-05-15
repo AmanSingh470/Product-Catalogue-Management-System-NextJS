@@ -10,24 +10,22 @@ import FilterProductModal from "@/components/FilterProduct/FilterProductModal";
 import AddProductModal from "@/components/Product/AddProductModal";
 import { AddProductProvider } from "@/context/add-product-context";
 import { ProductProvider } from "@/context/product-context";
-import NotificationDropDown from "@/components/Layout/NotificationDropDown";
 import { NotificationProvider } from "@/context/notification-context";
-import ProfileDropDown from "@/components/Layout/ProfileDropDown";
-import { ProfileProvider } from "@/context/profile-context";
+import type { ProductListing } from "@/types/product/productListing";
+import type { Filters } from "@/types/filter/productFilter";
 
-export default function HomeClient({ initialProducts, initialFilters }: any) {
+interface HomeClientProps {
+  initialProducts: ProductListing[];
+  initialFilters: Filters;
+}
+
+export default function HomeClient({ initialProducts, initialFilters }: HomeClientProps) {
   return (
     <>
       <NotificationProvider>
-        <ProfileProvider>
           <Navbar mode="home" />
-          <NotificationDropDown />
-          <ProfileDropDown />
-        </ProfileProvider>
       </NotificationProvider>
-
       <HeroSection />
-
       <ViewProvider>
         <AddProductProvider>
           <ProductProvider initialProducts={initialProducts}>

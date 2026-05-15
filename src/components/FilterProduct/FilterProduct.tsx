@@ -1,6 +1,5 @@
 "use client";
 import { useFilter } from "@/context/filter-context";
-import { useEffect } from "react";
 import Category from "@/components/FilterProduct/Category";
 import AllCards from "@/components/FilterProduct/AllCards";
 

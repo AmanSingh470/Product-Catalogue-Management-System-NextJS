@@ -93,7 +93,6 @@ export const getProductById = async (id: Number) => {
     if (typeof res.data === "string") {
       return FALLBACK_DETAIL;
     }
-    console.log("Coming from Service: ", res.data);
     return ProductDetailResponseSchema.parse(res.data);
   } catch (err) {
     return FALLBACK_DETAIL;

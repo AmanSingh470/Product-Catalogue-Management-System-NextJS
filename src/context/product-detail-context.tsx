@@ -1,6 +1,6 @@
 "use client";
 import { createContext, useContext, useState } from "react";
-import { ProductDetail } from "@/types/productDetail";
+import { ProductDetail } from "@/types/product/productDetail";
 
 interface ProductDetailContextType {
     productDetail: ProductDetail | null;
