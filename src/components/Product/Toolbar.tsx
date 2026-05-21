@@ -43,7 +43,7 @@ export default function Toolbar() {
 
                     <ListButton />
 
-                    <button className="bg-red-500 rounded-2xl cursor-pointer" id="add-product-btn" onClick={()=> openModal()}>
+                    <button className="bg-red-500 rounded-xs cursor-pointer" id="add-product-btn" onClick={()=> openModal()}>
                         <svg className="size-8" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
                             <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>

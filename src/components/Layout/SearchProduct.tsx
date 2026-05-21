@@ -39,7 +39,7 @@ export default function SearchProduct() {
                             inputRef.current?.focus();
                         }}
                     >
-                        <CrossIcon />
+                        <CrossIcon color="black" />
                     </div>
                 )}
             </div>

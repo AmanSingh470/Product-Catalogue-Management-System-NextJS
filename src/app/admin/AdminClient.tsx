@@ -1,6 +1,6 @@
 "use client";
 import Login from "@/components/Admin/Login";
-import Dashboard from "@/components/Admin/Dashboard";
+import Dashboard from "@/components/Admin/Dashboard/Dashboard";
 
 export default function AdminClient() {
 

@@ -1,34 +1,26 @@
 "use client";
-import ParallelBarIcon from "@/components/Icons/ParallelBarIcon"
 import ProductIcon from "@/components/Icons/ProductIcon";
 import CategoryIcon from "@/components/Icons/CategoryIcon";
 import SegmentIcon from "@/components/Icons/SegmentIcon";
 import DivisionIcon from "@/components/Icons/DivisionIcon";
 import UserIcon from "@/components/Icons/UserIcon";
-import ManagementModuleCard from "@/components/Admin/ManagementModuleCard";
-import RecentModifiedProducts from "@/components/Admin/RecentModifiedProducts";
+import ManagementModuleCard from "@/components/Admin/Dashboard/ManagementModuleCard";
+import RecentModifiedProducts from "@/components/Admin/Dashboard/RecentModifiedProducts";
 import ArrowIcon from "@/components/Icons/ArrowIcon";
 import Link from "next/link";
 import SideBar from "@/components/Admin/SideBar";
+import Header from "@/components/Admin/Dashboard/Header";
+
 
 export default function Dashboard() {
-    const modules = ["Product Management", "Category Management", "Segment Management", "Division Management", "Company Management", "Contact Person Management", "User Management", "Admin Profile Management"];
+
+    const modules = ["Product Management", "Category Management", "Segment Management", "Division Management", "Company Management", "Contact Person Management"];
 
     return (
         <div className="flex">
-            <div className="w-60 bg-black h-screen sticky top-0">
-                <SideBar/>
-            </div>
+            <SideBar />
             <div className="flex-1 h-full p-5">
-                <div className="flex justify-between">
-                    <div className="flex justify-between items-center w-34 mb-4">
-                        <div>
-                            <ParallelBarIcon />
-                        </div>
-                        <div className="font-medium">Dashboard</div>
-                    </div>
-                    <div>Aman Singh</div>
-                </div>
+                <Header />
                 <div className="h-55 rounded-lg p-10 bg-[url('/assets/images/background.png')] bg-cover bg-center bg-no-repeat relative">
                     <div className="absolute inset-0 bg-gradient-to-r from-black/100 via-black/70 to-black/20 rounded-lg"></div>
                     <h4 className="text-red-500 text-xs font-medium mb-3 relative">WELCOME ADMIN</h4>
@@ -37,7 +29,7 @@ export default function Dashboard() {
                         <h5 className="text-white text-xs font-light">Manage and organize your automotive product catalogue efficiently.</h5>
                     </div>
                 </div>
-                <div className="flex mt-5 gap-3">
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 mt-5 gap-3">
                     <div className="flex w-full h-25 text-center bg-white rounded-sm shadow-md justify-evenly items-center">
                         <div className="w-10 bg-black rounded-lg p-2">
                             <ProductIcon />
@@ -78,35 +70,25 @@ export default function Dashboard() {
                             <p className="text-xs">All Divisions</p>
                         </div>
                     </div>
-                    <div className="flex w-full h-25 text-center bg-white rounded-sm shadow-md justify-evenly items-center">
-                        <div className="w-10 bg-black rounded-lg p-2">
-                            <UserIcon />
-                        </div>
-                        <div>
-                            <h6 className="text-xs font-semibold mb-1">Users</h6>
-                            <h6 className="text-xl text-red-500 font-medium">42</h6>
-                            <p className="text-xs">All Users</p>
-                        </div>
-                    </div>
                 </div>
-                <div className="flex mt-5 gap-3">
-                    <div className="bg-white rounded-md p-3">
+                <div className="flex mt-5 gap-3 justify-center">
+                    <div className="bg-white rounded-md p-3 w-full">
                         <h3 className="font-medium text-md mb-3">Management Modules</h3>
-                        <div className="w-170 grid grid-cols-4 justify-items-center gap-3">
+                        <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 justify-items-center gap-3">
                             {modules.map((module, index) => (
                                 <ManagementModuleCard key={index} mode={module} />
                             ))}
                         </div>
                     </div>
-                    <div className="flex-1 p-3 bg-white rounded-md relative">
-                        <RecentModifiedProducts />
-                        <div className="flex absolute bottom-5 left-5 items-center w-37 justify-around">
-                            <Link href="/" className="font-medium text-sm">
-                                <p className="text-red-500">View All Products</p>
-                            </Link>
-                            <div className="size-6">
-                                <ArrowIcon />
-                            </div>
+                </div>
+                <div className="mt-5 flex-1p-3 bg-white rounded-md relative p-3">
+                    <RecentModifiedProducts />
+                    <div className="flex absolute bottom-0 items-center w-37 justify-around">
+                        <Link href="/" className="font-medium text-sm">
+                            <p className="text-red-500">View All Products</p>
+                        </Link>
+                        <div className="size-6">
+                            <ArrowIcon />
                         </div>
                     </div>
                 </div>
